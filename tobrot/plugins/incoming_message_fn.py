@@ -165,10 +165,10 @@ async def incoming_youtube_dl_f(client, message):
         message.reply_to_message, "YTDL"
     )
     LOGGER.info(dl_url)
-    if len(message.command) > 1:
-        if message.command[1] == "gdrive":
-            with open('blame_my_knowledge.txt', 'w+') as gg:
-                gg.write("I am noob and don't know what to do that's why I have did this")
+    #if len(message.command) > 1:
+        #if message.command[1] == "gdrive":
+            #with open('blame_my_knowledge.txt', 'w+') as gg:
+                #gg.write("I am noob and don't know what to do that's why I have did this")
     LOGGER.info(cf_name)
     if dl_url is not None:
         await i_m_sefg.edit_text("extracting links")
@@ -213,13 +213,14 @@ async def incoming_youtube_dl_f(client, message):
 async def g_yt_playlist(client, message):
     """ /pytdl command """
     #i_m_sefg = await message.reply_text("Processing...you should wait🤗", quote=True)
+    usr_id = message.from_user.id
+    G_DRIVE = False
     if len(message.command) > 1:
         if message.command[1] == "gdrive":
-            with open('blame_my_knowledge_again.txt', 'w+') as gg:
-                gg.write("I am noob and don't know what to do that's why I have did this")
+            G_DRIVE = True
     if 'youtube.com/playlist' in message.reply_to_message.text:
-        i_m_sefg = await message.reply_text("Processing...you should wait🤗", quote=True)
-        await yt_playlist_downg(message.reply_to_message, i_m_sefg)
+        i_m_sefg = await message.reply_text("Downloading...you should wait🤗", quote=True)
+        await yt_playlist_downg(message.reply_to_message, i_m_sefg, G_DRIVE)
     
     else:
         await message.reply_text("Reply to youtube playlist link only 🙄")
